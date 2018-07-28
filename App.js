@@ -9,7 +9,7 @@ import Home from './src/Home';
 
 export default class App extends React.Component {
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
   }
 
   render() {

@@ -3,6 +3,7 @@ import {
   Button,
   Dimensions,
   Image,
+  KeyboardAvoidingView,
   Text,
   TextInput,
   View,
@@ -18,25 +19,30 @@ export default class Login extends React.Component {
           style={styles.background}
           resizeMode='cover'
         />
-        <View style={styles.login}>
-          <Text style={styles.title}>PeanutButter</Text>
-          <Text style={styles.tagline}>Save without the fuss</Text>
+        <KeyboardAvoidingView style={styles.login} behavior="padding" enabled>
 
-          <TextInput
-            placeholder='Username'
-            style={styles.input}
-          />
-          <TextInput
-            placeholder='Password'
-            style={styles.input}
-            returnKeyType='done'
-          />
+          <View style={{flex: 3}}>
+            <Text style={styles.title}>PeanutButter</Text>
+            <Text style={styles.tagline}>Save without the fuss</Text>
+          </View>
 
-          <Button
-          onPress={this.props.onLoginPress}
-          title='Submit'
-          color='black'/>
-        </View>
+          <View style={{flex: 1}}>
+            <TextInput
+              placeholder='Username'
+              style={styles.input}
+            />
+            <TextInput
+              placeholder='Password'
+              style={styles.input}
+            />
+
+            <Button
+              onPress={this.props.onLoginPress}
+              title='Submit'
+              color='black'
+            />
+          </View>
+        </KeyboardAvoidingView>
       </View>
     );
   }
