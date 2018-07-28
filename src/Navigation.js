@@ -3,7 +3,7 @@ import {
   createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
-import Ionicons from 'react-native-vector-icons/Feather';
+import { Ionicons } from '@expo/vector-icons';
 import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 
 
@@ -59,13 +59,11 @@ export default createBottomTabNavigator({
   Explore: ExploreStack,
 },{
   navigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ tintColor }) => {
+    tabBarIcon: ({ focused, tintColor }) => {
       const { routeName } = navigation.state;
       let iconName;
       if (routeName === 'Explore') {
-        iconName = 'trending-up';
-      } else if (routeName === 'Saved') {
-        iconName = 'zap';
+        iconName = `ios-paper-plane${focused ? '' : '-outline'}`;
       }
       return <Ionicons name={iconName} size={25} color={tintColor} />;
     },
