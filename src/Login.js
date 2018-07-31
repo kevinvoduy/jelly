@@ -30,10 +30,12 @@ export default class Login extends React.Component {
             <TextInput
               placeholder='Username'
               style={styles.input}
+              underlineColorAndroid='rgba(0,0,0,0)'
             />
             <TextInput
               placeholder='Password'
               style={styles.input}
+              underlineColorAndroid='rgba(0,0,0,0)'
             />
 
             <Button
@@ -62,10 +64,7 @@ const styles = StyleSheet.create({
     color: '#fff',
   },
   input: {
-    paddingTop: 6,
-    paddingBottom: 6,
-    paddingLeft: 6,
-    paddingRight: 6,
+    paddingHorizontal: 6,
     fontSize: 18,
     marginBottom: 8,
     width: 300,

@@ -4,59 +4,50 @@ import {
   createStackNavigator,
 } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
-import TouchableBounce from 'react-native/Libraries/Components/Touchable/TouchableBounce';
 
 
 import Discounts from './Discounts';
 import Details from './Details';
 import Explore from './Explore';
+import Profile from './Profile';
 
 class Discount extends React.Component {
-  static navigationOptions = {
-    tabBarButtonComponent: TouchableBounce,
-    title: 'Discounts',
-  };
-
   render() {
     return <Discounts />;
   }
 }
 
 class ExploreMore extends React.Component {
-  static navigationOptions = {
-    tabBarButtonComponent: TouchableBounce,
-    title: 'Explore',
-    header: {
-      visible: false,
-    }
-  };
   render() {
     return <Explore />
   }
 }
 
 class Detail extends React.Component {
-  static navigationOptions = {
-    tabBarButtonComponent: TouchableBounce,
-    title: 'Explore',
-    header: {
-      visible: false,
-    }
-  };
   render() {
     return <Details />
   }
 }
 
+class ProfileScreen extends React.Component {
+  render() {
+    return <Profile />
+  }
+}
+
+const ProfileStack = createStackNavigator({
+  ProfileScreen: Profile,
+}, { headerMode: 'none' })
 
 const ExploreStack = createStackNavigator({
   ExploreMore: Explore,
   Detail: Details,
   Discount: Discounts,
-}, { headerMode: 'none' })
+})
 
 export default createBottomTabNavigator({
   Explore: ExploreStack,
+  Profile: ProfileStack,
 },{
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {
@@ -64,6 +55,8 @@ export default createBottomTabNavigator({
       let iconName;
       if (routeName === 'Explore') {
         iconName = `ios-paper-plane${focused ? '' : '-outline'}`;
+      } else if (routeName === 'Profile') {
+        iconName = `ios-planet${focused ? '' : '-outline'}`;
       }
       return <Ionicons name={iconName} size={25} color={tintColor} />;
     },

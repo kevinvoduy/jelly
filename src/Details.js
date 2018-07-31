@@ -14,6 +14,9 @@ const Screen = Dimensions.get('window');
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class Details extends React.Component {
+  static navigationOptions = {
+    title: 'Details',
+  };
   constructor() {
     super();
     this.state = {

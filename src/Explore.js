@@ -17,6 +17,10 @@ import retail from './json/retail.json';
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class Explore extends React.Component {
+  static navigationOptions = {
+    title: 'Explore',
+    header: null,
+  };
   constructor() {
     super();
     this.state = {
@@ -128,6 +132,7 @@ const styles = StyleSheet.create({
     width: Screen.width,
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 30,
   },
   heading: {
     fontSize: 36,

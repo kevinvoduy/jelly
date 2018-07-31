@@ -12,18 +12,7 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Navigation onLogoutPress={() => this.setState({isLoggedIn: false })}  />
-      </View>
+      <Navigation onLogoutPress={() => this.setState({isLoggedIn: false })}  />
     )
   }
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    paddingTop: 45,
-    width: '100%',
-  }
-});
