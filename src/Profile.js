@@ -80,7 +80,7 @@ export default class Profile extends React.Component {
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('PasswordScreen')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
             <Text style={{fontSize: 16, marginRight: 13}}>
               <Ionicons name='ios-key-outline' size={24} color='#000' />

@@ -11,6 +11,7 @@ import Details from './Details';
 import Explore from './Explore';
 import Profile from './Profile';
 import Credit from './Credit';
+import Password from './Password';
 
 class Discount extends React.Component {
   render() {
@@ -42,7 +43,14 @@ class CreditScreen extends React.Component {
   }
 }
 
+class PasswordScreen extends React.Component {
+  render() {
+    return <Password />
+  }
+}
+
 const ProfileStack = createStackNavigator({
+  PasswordScreen: Password,
   ProfileScreen: Profile,
   CreditScreen: Credit,
 })

@@ -15,15 +15,6 @@ import {
  import cards from './json/cards.json';
 
  export default class Credit extends React.Component {
-    state = {
-      cards: cards.data,
-      scrollY: new Animated.Value(0),
-      fullname: null,
-      last4: null,
-      expiration: null,
-      number: null,
-    }
-
    static navigationOptions = ({ naviation }) => {
      return {
       title: 'Credit Cards',
@@ -33,6 +24,15 @@ import {
       headerTintColor: '#000',
     }
   }
+    state = {
+      cards: cards.data,
+      scrollY: new Animated.Value(0),
+      fullname: null,
+      last4: null,
+      expiration: null,
+      number: null,
+    }
+
 
   _addCard() {
     if (this.state.fullname && this.state.number) {
