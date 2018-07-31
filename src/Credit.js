@@ -3,6 +3,7 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  Image,
   StatusBar,
   StyleSheet,
   Text,
@@ -56,20 +57,28 @@ import {
 
   _renderRow = ({item}) =>  (
       <TouchableOpacity style={styles.card} activeOpacity={.7}>
-        <Text style={{color: '#fff', marginBottom: 16, fontSize: 24}}>
-          {item.issuer}
-        </Text>
+        <Image
+          resizeMode='contain'
+          source={require('./images/blue-card.png')}
+          style={styles.image}
+        />
+        <View style={{padding: 16}}>
+          <Text style={{color: '#fff', marginBottom: 16, fontSize: 24}}>
+            {item.issuer}
+          </Text>
 
-        <Text style={{color: '#fff', fontSize: 24, fontWeight: 'bold'}}>
-          **** **** **** {item.last4}
-        </Text>
-        <View style={{alignSelf: 'flex-start'}}>
-          <Text style={{color: '#fff', fontSize: 12}}>
-            EXPIRES
+          <Text style={{color: '#fff', fontSize: 24, fontWeight: 'bold'}}>
+            **** **** **** {item.last4}
           </Text>
-          <Text style={{color: '#fff', fontSize: 12, fontWeight: 'bold'}}>
-            {item.expiration}
-          </Text>
+
+          <View style={{alignSelf: 'flex-start'}}>
+            <Text style={{color: '#fff', fontSize: 12}}>
+              EXPIRES
+            </Text>
+            <Text style={{color: '#fff', fontSize: 12, fontWeight: 'bold'}}>
+              {item.expiration}
+            </Text>
+          </View>
         </View>
       </TouchableOpacity>
   )
@@ -173,7 +182,7 @@ import {
 
             <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View>
-                <Text>
+                <Text style={styles.inputLabel}>
                   CVV
                 </Text>
                 <TextInput
@@ -184,7 +193,7 @@ import {
               </View>
 
               <View>
-                <Text>
+                <Text style={styles.inputLabel}>
                   Expires
                 </Text>
                 <TextInput
@@ -222,7 +231,6 @@ const styles = StyleSheet.create({
     paddingTop: 0,
   },
   card: {
-    alignItems: 'center',
     backgroundColor: 'slateblue',
     borderRadius: 16,
     height: height / 5,
@@ -230,8 +238,22 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
     marginLeft: 20,
     marginVertical: 20,
-    padding: 16,
-    overflow: 'hidden',
+    elevation: 1,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: .4,
+    shadowRadius: 8,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    flex: 1,
+    resizeMode: 'cover',
+    position: 'absolute',
+    borderRadius: 16,
   },
   scanCard: {
     backgroundColor: 'dodgerblue',
@@ -242,6 +264,9 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     paddingHorizontal: 16,
     paddingVertical: 6,
+  },
+  inputLabel: {
+    paddingLeft: 6,
   },
   input: {
     backgroundColor: '#f3f3f3',
