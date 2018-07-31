@@ -10,6 +10,7 @@ import Discounts from './Discounts';
 import Details from './Details';
 import Explore from './Explore';
 import Profile from './Profile';
+import Credit from './Credit';
 
 class Discount extends React.Component {
   render() {
@@ -35,9 +36,16 @@ class ProfileScreen extends React.Component {
   }
 }
 
+class CreditScreen extends React.Component {
+  render() {
+    return <Credit />
+  }
+}
+
 const ProfileStack = createStackNavigator({
   ProfileScreen: Profile,
-}, { headerMode: 'none' })
+  CreditScreen: Credit,
+})
 
 const ExploreStack = createStackNavigator({
   ExploreMore: Explore,
@@ -46,8 +54,8 @@ const ExploreStack = createStackNavigator({
 })
 
 export default createBottomTabNavigator({
-  Explore: ExploreStack,
   Profile: ProfileStack,
+  Explore: ExploreStack,
 },{
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {

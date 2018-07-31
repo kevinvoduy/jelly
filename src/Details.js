@@ -9,14 +9,18 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import HTMLView from 'react-native-htmlview';
 
 const Screen = Dimensions.get('window');
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class Details extends React.Component {
-  static navigationOptions = {
-    title: 'Details',
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('title', 'Details'),
+    };
   };
+
   constructor() {
     super();
     this.state = {
@@ -54,12 +58,17 @@ export default class Details extends React.Component {
 
         <View style={styles.blurb}>
           <Text style={styles.blurbHeader}>About this deal</Text>
-          <Text style={styles.blurbDetail}>{data.finePrint}</Text>
+          <HTMLView
+            value={data.pitchHtml}
+            style={styles.blurbDetail}
+            paragraphBreak={'false'}
+            lineBreak={'false'}
+          />
         </View>
 
         <View style={styles.blurb}>
           <Text style={styles.blurbHeader}>Fine print</Text>
-          <Text style={styles.blurbDetail}>{data.finePrint}</Text>
+          <HTMLView value={data.finePrint} style={styles.blurbDetail} />
         </View>
       </View>
     );
@@ -79,6 +88,7 @@ export default class Details extends React.Component {
       />
     );
   }
+
   render() {
     const data = this.props.navigation.getParam('data');
     return (

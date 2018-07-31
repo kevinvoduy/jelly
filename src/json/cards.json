@@ -1,0 +1,28 @@
+{
+  "data": [
+    {
+      "id": "2754",
+      "issuer": "MasterCard",
+      "last4": "2754",
+      "fullname": "James Willow",
+      "type": "Visa",
+      "expiration": 2022
+    },
+    {
+      "id": "7544",
+      "issuer": "Wells Fargo",
+      "last4": "7544",
+      "fullname": "Melvin Vo",
+      "type": "Visa",
+      "expiration": 2022
+    },
+    {
+      "id": "2342",
+      "issuer": "Chase",
+      "last4": "2342",
+      "fullname": "Cindy Wong",
+      "type": "Visa",
+      "expiration": 2022
+    }
+  ]
+}

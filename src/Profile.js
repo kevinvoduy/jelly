@@ -2,9 +2,9 @@ import React from 'react';
 import {
   Animated,
   Dimensions,
-  TextInput,
   ListView,
   StyleSheet,
+  TextInput,
   TouchableOpacity,
   Text,
   View,
@@ -15,6 +15,11 @@ import {
  const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class Profile extends React.Component {
+  static navigationOptions = {
+    title: 'Profile',
+    header: null,
+  }
+
   constructor() {
     super();
     this.state = {
@@ -34,7 +39,9 @@ export default class Profile extends React.Component {
         <Text style={{fontSize: 16,}}>Los Angeles, California</Text>
 
         <View style={{flexDirection: 'row', alignItems: 'center', marginTop: 30}}>
-          <Text style={{fontSize: 16, marginRight: 12}}><Ionicons name='ios-happy-outline' size={24} color='#000' /></Text>
+          <Text style={{fontSize: 16, marginRight: 13}}>
+            <Ionicons name='ios-happy-outline' size={24} color='#000' />
+          </Text>
           <TextInput
             placeholder='Full Name'
             style={styles.inputs}
@@ -44,7 +51,9 @@ export default class Profile extends React.Component {
         </View>
 
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={{fontSize: 16, marginLeft: 3, marginRight: 16}}><Ionicons name='ios-pin-outline' size={24} color='#000' /></Text>
+          <Text style={{fontSize: 16, marginLeft: 3, marginRight: 16}}>
+            <Ionicons name='ios-pin-outline' size={24} color='#000' />
+          </Text>
           <TextInput
             placeholder='Location'
             style={styles.inputs}
@@ -55,21 +64,36 @@ export default class Profile extends React.Component {
 
         <TouchableOpacity>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{fontSize: 16, marginRight: 15}}><Ionicons name='ios-cart-outline' size={24} color='#000' /></Text>
+            <Text style={{fontSize: 16, marginRight: 14}}>
+              <Ionicons name='ios-cart-outline' size={24} color='#000' />
+            </Text>
             <Text style={{fontSize: 16, paddingVertical: 8}}>Purchases</Text>
           </View>
         </TouchableOpacity>
 
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('CreditScreen')}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{fontSize: 16, marginRight: 14}}><Ionicons name='ios-image-outline' size={24} color='#000' /></Text>
-            <Text style={{fontSize: 16, paddingVertical: 8}}>Upload Image</Text>
+            <Text style={{fontSize: 16, marginRight: 13}}>
+              <Ionicons name='ios-card-outline' size={24} color='#000' />
+            </Text>
+            <Text style={{fontSize: 16, paddingVertical: 8}}>Credit Cards</Text>
           </View>
         </TouchableOpacity>
 
         <TouchableOpacity>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={{fontSize: 16, marginRight: 12}}><Ionicons name='ios-close-circle-outline' size={24} color='tomato' /></Text>
+            <Text style={{fontSize: 16, marginRight: 13}}>
+              <Ionicons name='ios-key-outline' size={24} color='#000' />
+            </Text>
+            <Text style={{fontSize: 16, paddingVertical: 8}}>Change Password</Text>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={{fontSize: 16, marginRight: 12}}>
+              <Ionicons name='ios-close-circle-outline' size={24} color='tomato' />
+            </Text>
             <Text style={{fontSize: 16, paddingVertical: 8}}>Logout</Text>
           </View>
         </TouchableOpacity>
@@ -106,7 +130,7 @@ export default class Profile extends React.Component {
             {
               scale: this.state.scrollY.interpolate({
                 inputRange: [0, 400],
-                outputRange: [1.3, .91],
+                outputRange: [1.4, 1.1],
               }),
             },
             {
@@ -164,7 +188,7 @@ const styles = StyleSheet.create({
   },
   inputs: {
     fontSize: 16,
-    paddingVertical: 8,
+    paddingVertical: 6,
     width: '100%',
   },
 })

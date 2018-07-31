@@ -34,7 +34,7 @@ export default class Explore extends React.Component {
 
   renderRow(row) {
     return (
-      <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('Detail', { data: row })}>
+      <TouchableOpacity style={styles.card} onPress={() => this.props.navigation.navigate('Detail', { data: row, title: row.title })}>
         <View style={{flex: 1}}>
           <Image
             resizeMode='contain'
