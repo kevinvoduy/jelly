@@ -9,7 +9,6 @@ import {
   View,
   Dimensions,
 } from 'react-native';
-import discounts from './json/discounts.json';
 import food from './json/food-drink.json';
 import local from './json/los-angeles.json';
 import retail from './json/retail.json';
@@ -24,7 +23,6 @@ export default class Explore extends React.Component {
   constructor() {
     super();
     this.state = {
-      dataSource: ds.cloneWithRows(discounts.data),
       food: ds.cloneWithRows(food.deals),
       retail: ds.cloneWithRows(retail.deals),
       local: ds.cloneWithRows(local.deals),

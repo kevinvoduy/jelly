@@ -1,13 +1,14 @@
 import React from 'react';
 import {
-  Animated,
   Dimensions,
+  KeyboardAvoidingView,
   Text,
   TextInput,
   TouchableOpacity,
   StyleSheet,
   View,
  } from 'react-native';
+ import { Ionicons } from '@expo/vector-icons';
 
 export default class Password extends React.Component {
   static navigationOptions = ({ naviation }) => {
@@ -21,33 +22,77 @@ export default class Password extends React.Component {
   }
 
   state = {
-     password: '',
-     visibility: true,
-   }
+    password: '',
+    visibility: true,
+    test1: false,
+    test2: false,
+    test3: false,
+  }
 
-   _passwordStrength = () => {
-    const exellent = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{10,})");
-    const strong = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
-    const medium = new RegExp("^(?=.*[a-z])(?=.{8,})");
+  _pwTest1 = () => {
+    const test1 = this.state.password.length >= 4 ? true : false;
+    const icon = `ios-done-all${test1 ? '-outline' : ''}`;
+    const tint = `${test1 ? 'green' : '#000'}`;
 
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 12, marginTop: 30}}>
+        <Text style={{fontSize: 16, marginRight: 13}}>
+          <Ionicons name={icon} size={36} color={tint} />
+        </Text>
+        <Text style={{ color: tint, fontSize: 16 }}>Must not contain your name or email</Text>
+      </View>
+    )
+  }
+
+  _pwTest2 = () => {
+    const test2 = this.state.password.length >= 8 ? true : false;
+    const icon = `ios-done-all${test2 ? '-outline' : ''}`;
+    const tint = `${test2 ? 'green' : '#000'}`;
+
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 12}}>
+        <Text style={{fontSize: 16, marginRight: 13}}>
+          <Ionicons name={icon} size={36} color={tint} />
+        </Text>
+        <Text style={{ color: tint, fontSize: 16 }}>Contain at least 8 characters</Text>
+      </View>
+    )
+  }
+
+  _pwTest3 = () => {
+    const test3 = strong.test(this.state.password);
+    const icon = `ios-done-all${test3 ? '-outline' : ''}`;
+    const tint = `${test3 ? 'green' : '#000'}`;
+
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 12}}>
+        <Text style={{fontSize: 16, marginRight: 13}}>
+          <Ionicons name={icon} size={36} color={tint} />
+        </Text>
+        <Text style={{ color: tint, fontSize: 16 }}>Contains a symbol and/or a number</Text>
+      </View>
+    )
+  }
+
+  _passwordStrength = () => {
     if (this.state.password.length === 0) {
       return;
     } else if (exellent.test(this.state.password)) {
-      return <Text style={{color: 'forestgreen'}}>Excellent!</Text>
+      return <Text style={{color: 'green'}}>Excellent!</Text>;
     } else if (strong.test(this.state.password)) {
-      return <Text style={{color: 'dodgerblue'}}>Strong</Text>
+      return <Text style={{color: 'dodgerblue'}}>Strong</Text>;
     } else if (medium.test(this.state.password)) {
-      return <Text style={{color: 'dodgerblue'}}>Moderate</Text>
+      return <Text style={{color: 'dodgerblue'}}>Moderate</Text>;
     } else {
-      return <Text style={{color: 'tomato'}}>Weak</Text>
+      return <Text style={{color: 'tomato'}}>Weak</Text>;
     }
   }
 
   _renderVisibility = () => {
     if (this.state.visibility) {
-      return <Text>Show</Text>;
+      return <Text style={{ color: '#9d9d9d' }}>Show</Text>;
     } else {
-      return <Text>Hide</Text>;
+      return <Text style={{ color: '#9d9d9d' }}>Hide</Text>;
     }
   }
 
@@ -57,7 +102,7 @@ export default class Password extends React.Component {
 
   render() {
     return(
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior={'padding'} enabled>
         <Text style={styles.header}>
           Create your password
         </Text>
@@ -72,20 +117,31 @@ export default class Password extends React.Component {
             autoCorrect={false}
             secureTextEntry={this.state.visibility}
             textContentType={'password'}
+            placeholderTextColor={'#9d9d9d'}
           />
           <TouchableOpacity onPress={() => this._toggleVisibilty()}>
             {this._renderVisibility()}
           </TouchableOpacity>
         </View>
 
-        <View style={{flexDirection: 'row'}}>
-          <Text>Password Strength: </Text>
-          <Text>{this._passwordStrength()}</Text>
+        <View style={{flexDirection: 'row', paddingVertical: 8}}>
+          <Text style={{ fontSize: 14, color: '#9d9d9d' }}>Password Strength: </Text>
+          <Text style={{ fontSize: 14 }}>{this._passwordStrength()}</Text>
         </View>
-      </View>
+
+        {this._pwTest1()}
+        {this._pwTest2()}
+        {this._pwTest3()}
+
+      </KeyboardAvoidingView>
     )
   }
 };
+
+// password regex
+const exellent = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{10,})");
+const strong = new RegExp("^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+const medium = new RegExp("^(?=.*[a-z,A-Z])(?=.{8,})");
 
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -94,10 +150,11 @@ const styles = StyleSheet.create({
     width: width,
     backgroundColor: '#fff',
     padding: 20,
+    justifyContent: 'center',
   },
   header: {
-    fontSize: 48,
-    fontWeight: '300',
+    fontSize: 56,
+    fontWeight: '500',
   },
   passwordField: {
     flexDirection: 'row',
@@ -107,7 +164,9 @@ const styles = StyleSheet.create({
     borderColor: '#000'
   },
   input: {
-    paddingVertical: 8,
     fontSize: 18,
+    marginTop: 8,
+    paddingVertical: 12,
+    width: width * .75,
   }
 });

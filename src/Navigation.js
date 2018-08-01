@@ -50,8 +50,8 @@ class PasswordScreen extends React.Component {
 }
 
 const ProfileStack = createStackNavigator({
-  PasswordScreen: Password,
   ProfileScreen: Profile,
+  PasswordScreen: Password,
   CreditScreen: Credit,
 })
 
