@@ -62,8 +62,8 @@ const ExploreStack = createStackNavigator({
 })
 
 export default createBottomTabNavigator({
-  Profile: ProfileStack,
   Explore: ExploreStack,
+  Profile: ProfileStack,
 },{
   navigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, tintColor }) => {
@@ -78,7 +78,7 @@ export default createBottomTabNavigator({
     },
   }),
   tabBarOptions: {
-    activeTintColor: 'tomato',
+    activeTintColor: '#83a4d4',
     inactiveTintColor: 'gray',
   },
   tabBarPosition: 'bottom',

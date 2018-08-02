@@ -11,14 +11,12 @@ import {
  import { Ionicons } from '@expo/vector-icons';
 
 export default class Password extends React.Component {
-  static navigationOptions = ({ naviation }) => {
-    return {
-      title: 'Change Password',
-      headerStyle: {
-        backgroundColor: '#fff',
-      },
-      headerTintColor: '#000',
-    }
+  static navigationOptions = {
+    title: 'Change Password',
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    headerTintColor: '#000',
   }
 
   state = {
@@ -31,45 +29,45 @@ export default class Password extends React.Component {
 
   _pwTest1 = () => {
     const test1 = this.state.password.length >= 4 ? true : false;
-    const icon = `ios-done-all${test1 ? '-outline' : ''}`;
+    const icon = `ios-checkmark-circle${test1 ? '' : '-outline'}`;
     const tint = `${test1 ? 'green' : '#000'}`;
 
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 12, marginTop: 30}}>
-        <Text style={{fontSize: 16, marginRight: 13}}>
-          <Ionicons name={icon} size={36} color={tint} />
+        <Text style={{fontSize: 14, marginRight: 8}}>
+          <Ionicons name={icon} size={24} color={tint} />
         </Text>
-        <Text style={{ color: tint, fontSize: 16 }}>Must not contain your name or email</Text>
+        <Text style={{ color: tint, fontSize: 14 }}>Must not contain your name or email</Text>
       </View>
     )
   }
 
   _pwTest2 = () => {
     const test2 = this.state.password.length >= 8 ? true : false;
-    const icon = `ios-done-all${test2 ? '-outline' : ''}`;
+    const icon = `ios-checkmark-circle${test2 ? '' : '-outline'}`;
     const tint = `${test2 ? 'green' : '#000'}`;
 
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 12}}>
-        <Text style={{fontSize: 16, marginRight: 13}}>
-          <Ionicons name={icon} size={36} color={tint} />
+        <Text style={{fontSize: 14, marginRight: 8}}>
+          <Ionicons name={icon} size={24} color={tint} />
         </Text>
-        <Text style={{ color: tint, fontSize: 16 }}>Contain at least 8 characters</Text>
+        <Text style={{ color: tint, fontSize: 14 }}>Contain at least 8 characters</Text>
       </View>
     )
   }
 
   _pwTest3 = () => {
     const test3 = strong.test(this.state.password);
-    const icon = `ios-done-all${test3 ? '-outline' : ''}`;
+    const icon = `ios-checkmark-circle${test3 ? '' : '-outline'}`;
     const tint = `${test3 ? 'green' : '#000'}`;
 
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 12}}>
-        <Text style={{fontSize: 16, marginRight: 13}}>
-          <Ionicons name={icon} size={36} color={tint} />
+        <Text style={{fontSize: 14, marginRight: 8}}>
+          <Ionicons name={icon} size={24} color={tint} />
         </Text>
-        <Text style={{ color: tint, fontSize: 16 }}>Contains a symbol and/or a number</Text>
+        <Text style={{ color: tint, fontSize: 14 }}>Contains a symbol and a number</Text>
       </View>
     )
   }
@@ -125,8 +123,12 @@ export default class Password extends React.Component {
         </View>
 
         <View style={{flexDirection: 'row', paddingVertical: 8}}>
-          <Text style={{ fontSize: 14, color: '#9d9d9d' }}>Password Strength: </Text>
-          <Text style={{ fontSize: 14 }}>{this._passwordStrength()}</Text>
+          <Text style={{ fontSize: 14, color: '#9d9d9d' }}>
+            {'Password Strength: '}
+              </Text>
+          <Text style={{ fontSize: 14 }}>
+            {this._passwordStrength()}
+          </Text>
         </View>
 
         {this._pwTest1()}
@@ -153,7 +155,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   header: {
-    fontSize: 56,
+    fontSize: 48,
     fontWeight: '500',
   },
   passwordField: {

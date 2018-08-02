@@ -17,14 +17,18 @@ import local from './json/los-angeles.json';
 const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
 export default class Discounts extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      Bonuses: ds.cloneWithRows(bonus.deals),
-      Cashbacks: ds.cloneWithRows(cashback.deals),
-      Local: ds.cloneWithRows(local.deals),
-      scrollY: new Animated.Value(0),
-    };
+  state = {
+    Bonuses: ds.cloneWithRows(bonus.deals),
+    Cashbacks: ds.cloneWithRows(cashback.deals),
+    Local: ds.cloneWithRows(local.deals),
+    scrollY: new Animated.Value(0),
+  }
+
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#fff',
+    },
+    title: 'Discounts'
   }
 
   renderRow(row) {
@@ -94,10 +98,20 @@ export default class Discounts extends React.Component {
                 }),
               }],
             }]}
-            source={require('./images/blue-cropped.png')}
+            source={require('./images/slate.png')}
           />
 
-        <Text style={styles.heading}>{this.props.navigation.getParam('category')}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', paddingVertical: 16 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={{ marginRight: 8 }}>Special Offers</Text>
+            <View style={{ backgroundColor: 'dodgerblue', borderRadius: 8, borderWidth: 1, borderColor: 'dodgerblue', overflow: 'hidden', width: 16, height:  16, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ color: '#fff', fontSize: 12 }}>4</Text>
+            </View>
+          </View>
+          <View>
+            <Text>Global</Text>
+          </View>
+        </View>
 
         <ListView
           dataSource={this.state[this.props.navigation.getParam('category')]}
@@ -133,11 +147,11 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     width: Screen.width,
-    height: Screen.width / 750 * 900,
+    height: Screen.width / 750 * 1364,
     position: 'absolute',
   },
   header: {
-    height: 14,
+    height: 0,
   },
   card: {
     height: 180,

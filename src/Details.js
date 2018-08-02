@@ -123,7 +123,7 @@ export default class Details extends React.Component {
         <Button
           title='Buy'
           onPress={() => Alert.alert('Purchased', 'No take backs!')}
-          color='tomato'
+          color='#83a4d4'
         />
       </View>
     );
@@ -153,13 +153,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   highlightRed: {
-    backgroundColor: 'salmon',
+    backgroundColor: '#83a4d4',
     color: '#fff',
     fontWeight: 'bold',
     textAlign: 'center',
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: 'salmon',
+    borderColor: '#83a4d4',
     overflow: 'hidden',
   },
   blurb: {

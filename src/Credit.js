@@ -4,7 +4,6 @@ import {
   Dimensions,
   FlatList,
   Image,
-  StatusBar,
   StyleSheet,
   Text,
   TextInput,
@@ -100,9 +99,6 @@ import {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar
-          barStyle='dark-content'
-        />
         <Text style={styles.header}>
           My Cards
         </Text>

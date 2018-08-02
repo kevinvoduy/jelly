@@ -184,7 +184,7 @@ const styles = StyleSheet.create({
     shadowRadius: 12,
   },
   header: {
-    paddingTop: Screen.height - Screen.height / 5,
+    paddingTop: Screen.height - Screen.height / 4.75,
   },
   inputs: {
     fontSize: 16,
